@@ -83,6 +83,9 @@ namespace CalculatorApp
         private:
             static constexpr auto m_focusedStr = L"Focused";
             static constexpr auto m_unfocusedStr = L"Unfocused";
+
+            static constexpr auto m_normalStr = L"Normal";
+            static constexpr auto m_activeStr = L"Active";
         };
     }
 }

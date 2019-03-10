@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 #include "pch.h"
@@ -133,8 +133,8 @@ void CalculationResult::OnAccentColorPropertyChanged(Brush^ /*oldValue*/, Brush^
     // Force the "Active" transition to happen again
     if (IsActive)
     {
-        VisualStateManager::GoToState(this, "Normal", true);
-        VisualStateManager::GoToState(this, "Active", true);
+        VisualStateManager::GoToState(this, ref new String(m_normalStr), true);
+        VisualStateManager::GoToState(this, ref new String(m_activeStr), true);
     }
 }
 
@@ -173,11 +173,11 @@ void CalculationResult::UpdateVisualState()
 {
     if (IsActive)
     {
-        VisualStateManager::GoToState(this, "Active", true);
+        VisualStateManager::GoToState(this, ref new String(m_activeStr), true);
     }
-    else 
+    else
     {
-        VisualStateManager::GoToState(this, "Normal", true);
+        VisualStateManager::GoToState(this, ref new String(m_normalStr), true);
     }
 }
 
