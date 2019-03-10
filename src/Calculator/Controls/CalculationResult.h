@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 #pragma once
@@ -79,6 +79,10 @@ namespace CalculatorApp
             bool m_isScalingText;
             bool m_haveCalculatedMax;
             Windows::Foundation::EventRegistrationToken m_textContainerLayoutChangedToken;
+
+        private:
+            static constexpr auto m_focusedStr = L"Focused";
+            static constexpr auto m_unfocusedStr = L"Unfocused";
         };
     }
 }

@@ -46,8 +46,8 @@ DEPENDENCY_PROPERTY_INITIALIZATION(CalculationResult, DisplayStringExpression);
 #define WIDTHCUTOFF 50
 #define FONTTOLERANCE 0.001
 
-StringReference CalculationResult::s_FocusedState(L"Focused");
-StringReference CalculationResult::s_UnfocusedState(L"Unfocused");
+StringReference CalculationResult::s_FocusedState(m_focusedStr);
+StringReference CalculationResult::s_UnfocusedState(m_unfocusedStr);
 
 CalculationResult::CalculationResult():
     m_startingFontSize(0.0),
