@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 //
@@ -55,19 +55,19 @@ void CalculatorApp::CalculatorScientificAngleButtons::OnAngleButtonPressed(_In_ 
     radianButton->Visibility = ::Visibility::Collapsed;
     gradsButton->Visibility = ::Visibility::Collapsed;
 
-    if (buttonId == L"0")
+    if (buttonId->Equals(ref new String(m_zeroStr)))
     {
         Model->SwitchAngleType(NumbersAndOperatorsEnum::Radians);
         radianButton->Visibility = ::Visibility::Visible;
         radianButton->Focus(::FocusState::Programmatic);
     }
-    else if (buttonId == L"1")
+    else if (buttonId->Equals(ref new String(m_oneStr)))
     {
         Model->SwitchAngleType(NumbersAndOperatorsEnum::Grads);
         gradsButton->Visibility = ::Visibility::Visible;
         gradsButton->Focus(::FocusState::Programmatic);
     }
-    else if (buttonId == L"2")
+    else if (buttonId->Equals(ref new String(m_twoStr)))
     {
         Model->SwitchAngleType(NumbersAndOperatorsEnum::Degree);
         degreeButton->Visibility = ::Visibility::Visible;
@@ -85,7 +85,7 @@ void CalculatorScientificAngleButtons::IsErrorVisualState::set(bool value)
     if (m_isErrorVisualState != value)
     {
         m_isErrorVisualState = value;
-        String^ newState = m_isErrorVisualState ? L"ErrorLayout" : L"NoErrorLayout";
+        String^ newState = m_isErrorVisualState ? ref new String(m_errorLayoutStr) : ref new String(m_noErrorLayoutStr);
         VisualStateManager::GoToState(this, newState, false);
     }
 }

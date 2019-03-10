@@ -38,5 +38,13 @@ namespace CalculatorApp
         void HypButton_Toggled(_In_ Platform::Object^ sender, _In_ Windows::UI::Xaml::RoutedEventArgs^ e);
 
         bool m_isErrorVisualState;
+
+    private:
+        static constexpr auto m_zeroStr = L"0";
+        static constexpr auto m_oneStr = L"1";
+        static constexpr auto m_twoStr = L"2";
+
+        static constexpr auto m_errorLayoutStr = L"ErrorLayout";
+        static constexpr auto m_noErrorLayoutStr = L"NoErrorLayout";
 	};
 }
