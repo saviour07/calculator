@@ -29,5 +29,9 @@ namespace CalculatorApp
 
     private:
         bool m_isErrorVisualState;
+
+    private:
+        static constexpr auto m_errorLayoutStr = L"ErrorLayout";
+        static constexpr auto m_noErrorLayoutStr = L"NoErrorLayout";
     };
 }
