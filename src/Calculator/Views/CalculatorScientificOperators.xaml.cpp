@@ -54,7 +54,7 @@ void CalculatorScientificOperators::WideLayout_Completed(_In_ Platform::Object^ 
 
 void CalculatorScientificOperators::OnIsErrorVisualStatePropertyChanged(bool /*oldValue*/, bool newValue)
 {
-    String^ newState = newValue ? L"ErrorLayout" : L"NoErrorLayout";
+    String^ newState = newValue ? ref new String(m_errorLayoutStr) : ref new String(m_noErrorLayoutStr);
     VisualStateManager::GoToState(this, newState, false);
     NumberPad->IsErrorVisualState = newValue;
 }

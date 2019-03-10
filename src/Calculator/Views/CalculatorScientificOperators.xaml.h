@@ -41,5 +41,9 @@ namespace CalculatorApp
         void shiftButton_Check(_In_ Platform::Object^ sender, _In_ Windows::UI::Xaml::RoutedEventArgs^ e);
         void shiftButton_IsEnabledChanged(_In_ Platform::Object^ sender, _In_ Windows::UI::Xaml::DependencyPropertyChangedEventArgs^ e);
         void SetOperatorRowVisibility();
+
+    private:
+        static constexpr auto m_errorLayoutStr = L"ErrorLayout";
+        static constexpr auto m_noErrorLayoutStr = L"NoErrorLayout";
     };
 }
