@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 #include "pch.h"
@@ -35,7 +35,7 @@ namespace CalculatorApp
 
     AppLifecycleLogger::AppLifecycleLogger() :
         m_appLifecycleProvider(
-            L"Microsoft.Windows.AppLifeCycle",
+            m_microsoftWindowsAppLifeCycleStr,
             LoggingChannelOptions(GUID{ 0x4f50731a, 0x89cf, 0x4782, 0xb3, 0xe0, 0xdc, 0xe8, 0xc9, 0x4, 0x76, 0xba }), // Microsoft Telemetry group
             GUID{ 0xef00584a, 0x2655, 0x462c, 0xbc, 0x24, 0xe7, 0xde, 0x63, 0xe, 0x7f, 0xbf }) //Unique provider ID {EF00584A-2655-462C-BC24-E7DE630E7FBF}
     {
@@ -69,7 +69,7 @@ namespace CalculatorApp
 
         LoggingFields fields{};
         PopulateAppInfo(fields);
-        LogAppLifecycleEvent(L"ModernAppLaunch_UIResponsive", fields);
+        LogAppLifecycleEvent(m_modernAppLaunchUIResponsiveStr, fields);
     }
 
     void AppLifecycleLogger::LaunchVisibleComplete() const
@@ -78,7 +78,7 @@ namespace CalculatorApp
 
         LoggingFields fields{};
         PopulateAppInfo(fields);
-        LogAppLifecycleEvent(L"ModernAppLaunch_VisibleComplete", fields);
+        LogAppLifecycleEvent(m_modernAppLaunchVisibleCompleteStr, fields);
     }
 
     void AppLifecycleLogger::ResumeUIResponsive() const
@@ -87,7 +87,7 @@ namespace CalculatorApp
 
         LoggingFields fields{};
         PopulateAppInfo(fields);
-        LogAppLifecycleEvent(L"ModernAppResume_UIResponsive", fields);
+        LogAppLifecycleEvent(m_modernAppResumeUIResponsiveStr, fields);
     }
 
     void AppLifecycleLogger::ResumeVisibleComplete() const
@@ -96,7 +96,7 @@ namespace CalculatorApp
 
         LoggingFields fields{};
         PopulateAppInfo(fields);
-        LogAppLifecycleEvent(L"ModernAppResume_VisibleComplete", fields);
+        LogAppLifecycleEvent(m_modernAppResumeVisibleCompleteStr, fields);
     }
 
     void AppLifecycleLogger::ResizeUIResponsive() const
@@ -110,8 +110,8 @@ namespace CalculatorApp
 
         LoggingFields fields{};
         PopulateAppInfo(fields);
-        fields.AddInt32(L"ViewId", viewId);
-        LogAppLifecycleEvent(L"ModernAppResize_UIResponsive", fields);
+        fields.AddInt32(m_ViewIdStr, viewId);
+        LogAppLifecycleEvent(m_modernAppResizeUIResponsiveStr, fields);
     }
 
     void AppLifecycleLogger::ResizeVisibleComplete() const
@@ -125,20 +125,20 @@ namespace CalculatorApp
 
         LoggingFields fields{};
         PopulateAppInfo(fields);
-        fields.AddInt32(L"ViewId", viewId);
-        LogAppLifecycleEvent(L"ModernAppResize_VisibleComplete", fields);
+        fields.AddInt32(m_ViewIdStr, viewId);
+        LogAppLifecycleEvent(m_modernAppResizeVisibleCompleteStr, fields);
     }
 
     void AppLifecycleLogger::PopulateAppInfo(LoggingFields& fields) const
     {
         auto appId = CoreApplication::Id();
-        auto aumId = Package::Current().Id().FamilyName() + L"!" + appId;
+        auto aumId = Package::Current().Id().FamilyName() + m_exclamationStr + appId;
         auto packageFullName = Package::Current().Id().FullName();
-        auto psmKey = Package::Current().Id().FullName() + L"+" + appId;
+        auto psmKey = Package::Current().Id().FullName() + m_additionStr + appId;
 
-        fields.AddString(L"AumId", aumId);
-        fields.AddString(L"PackageFullName", packageFullName);
-        fields.AddString(L"PsmKey", psmKey);
+        fields.AddString(m_aumIdStr, aumId);
+        fields.AddString(m_packageFullNameStr, packageFullName);
+        fields.AddString(m_psmKeyStr, psmKey);
     }
 }
 

@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 #pragma once
@@ -37,5 +37,20 @@ namespace CalculatorApp
         void PopulateAppInfo(winrt::Windows::Foundation::Diagnostics::LoggingFields& fields) const;
 
         winrt::Windows::Foundation::Diagnostics::LoggingChannel m_appLifecycleProvider;
+
+    private:
+        static constexpr auto m_microsoftWindowsAppLifeCycleStr = L"Microsoft.Windows.AppLifeCycle";
+        static constexpr auto m_modernAppLaunchUIResponsiveStr = L"ModernAppLaunch_UIResponsive";
+        static constexpr auto m_modernAppLaunchVisibleCompleteStr = L"ModernAppLaunch_VisibleComplete";
+        static constexpr auto m_modernAppResumeUIResponsiveStr = L"ModernAppResume_UIResponsive";
+        static constexpr auto m_modernAppResumeVisibleCompleteStr = L"ModernAppResume_VisibleComplete";
+        static constexpr auto m_ViewIdStr = L"ViewId";
+        static constexpr auto m_modernAppResizeUIResponsiveStr = L"ModernAppResize_UIResponsive";
+        static constexpr auto m_modernAppResizeVisibleCompleteStr = L"ModernAppResize_VisibleComplete";
+        static constexpr auto m_exclamationStr = L"!";
+        static constexpr auto m_additionStr = L"+";
+        static constexpr auto m_aumIdStr = L"AumId";
+        static constexpr auto m_packageFullNameStr = L"PackageFullName";
+        static constexpr auto m_psmKeyStr = L"PsmKey";
     };
 }
