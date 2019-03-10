@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 //
@@ -79,20 +79,21 @@ DateCalculator::DateCalculator()
     DateDiff_ToDate->MaxDate = maxYear;
 
     // Set the PlaceHolderText for CalendarDatePicker
+    auto dayMonthYearFmtStr = ref new String(m_dayMonthYearStr);
     DateTimeFormatter^ dateTimeFormatter = LocalizationService::GetRegionalSettingsAwareDateTimeFormatter(
-        L"day month year",
+        dayMonthYearFmtStr,
         localizationSettings.GetCalendarIdentifier(),
         ClockIdentifiers::TwentyFourHour); // Clock Identifier is not used
 
-    DateDiff_FromDate->DateFormat = L"day month year";
-    DateDiff_ToDate->DateFormat = L"day month year";
+    DateDiff_FromDate->DateFormat = dayMonthYearFmtStr;
+    DateDiff_ToDate->DateFormat = dayMonthYearFmtStr;
 
     auto placeholderText = dateTimeFormatter->Format(today);
 
     DateDiff_FromDate->PlaceholderText = placeholderText;
     DateDiff_ToDate->PlaceholderText = placeholderText;
 
-    CopyMenuItem->Text = AppResourceProvider::GetInstance().GetResourceString(L"copyMenuItem");
+    CopyMenuItem->Text = AppResourceProvider::GetInstance().GetResourceString(ref new String(m_copyMenuItemStr));
     m_dateCalcOptionChangedEventToken = DateCalculationOption->SelectionChanged += ref new SelectionChangedEventHandler(this, &DateCalculator::DateCalcOption_Changed);
 }
 
@@ -180,7 +181,7 @@ void DateCalculator::SetDefaultFocus()
 
 void DateCalculator::DateCalcOption_Changed(_In_ Platform::Object^ sender, _In_ Windows::UI::Xaml::Controls::SelectionChangedEventArgs^ e)
 {
-    FindName("AddSubtractDateGrid");
+    FindName(ref new String(m_addSubtractDateGridStr));
     DateCalculationOption->SelectionChanged -= m_dateCalcOptionChangedEventToken;
 }
 
@@ -195,7 +196,7 @@ void CalculatorApp::DateCalculator::AddSubtractDateGrid_Loaded(_In_ Platform::Ob
 
     AddSubtract_FromDate->MinDate = DateDiff_FromDate->MinDate;
     AddSubtract_FromDate->MaxDate = DateDiff_FromDate->MaxDate;
-    AddSubtract_FromDate->DateFormat = L"day month year";
+    AddSubtract_FromDate->DateFormat = ref new String(m_dayMonthYearStr);
 }
 
 void DateCalculator::ReselectCalendarDate(_In_ Windows::UI::Xaml::Controls::CalendarDatePicker^ calendarDatePicker, Windows::Foundation::DateTime dateTime)

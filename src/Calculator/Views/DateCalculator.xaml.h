@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 //
@@ -45,5 +45,11 @@ namespace CalculatorApp
         void RaiseLiveRegionChangedAutomationEvent(_In_ bool isDateDiffMode);
 
         Windows::Foundation::EventRegistrationToken m_dateCalcOptionChangedEventToken;
+
+    private:
+        static constexpr auto m_dayMonthYearStr = L"day month year";
+        static constexpr auto m_copyMenuItemStr = L"copyMenuItem";
+
+        static constexpr auto m_addSubtractDateGridStr = L"AddSubtractDateGrid";
     };
 }
