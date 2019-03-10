@@ -139,5 +139,61 @@ namespace CalculatorApp
         void OnHistoryAccessKeyInvoked(_In_ Windows::UI::Xaml::UIElement^ sender, _In_ Windows::UI::Xaml::Input::AccessKeyInvokedEventArgs^ args);
         void OnMemoryAccessKeyInvoked(_In_ Windows::UI::Xaml::UIElement^ sender, _In_ Windows::UI::Xaml::Input::AccessKeyInvokedEventArgs^ args);
         void DockPivot_SelectionChanged(Platform::Object^ sender, Windows::UI::Xaml::Controls::SelectionChangedEventArgs^ e);
+
+    private:
+        static constexpr auto m_displayContextMenuStr = L"DisplayContextMenu";
+        static constexpr auto m_copyMenuItemStr = L"copyMenuItem";
+        static constexpr auto m_pasteMenuItemStr = L"pasteMenuItem";
+        static constexpr auto m_memoryButtonOpenStr = L"MemoryButton_Open";
+        static constexpr auto m_memoryButtonCloseStr = L"MemoryButton_Close";
+        static constexpr auto m_historyButtonOpenStr = L"HistoryButton_Open";
+        static constexpr auto m_historyButtonCloseStr = L"HistoryButton_Close";
+
+        static constexpr auto m_arabStr = L"Arab";
+        static constexpr auto m_arabExtStr = L"ArabExt";
+        static constexpr auto m_bengStr = L"Beng";
+        static constexpr auto m_devaStr = L"Deva";
+        static constexpr auto m_gujrStr = L"Gujr";
+        static constexpr auto m_khmrStr = L"Khmr";
+        static constexpr auto m_kndaStr = L"Knda";
+        static constexpr auto m_laooStr = L"Laoo";
+        static constexpr auto m_latnStr = L"Latn";
+        static constexpr auto m_mlymStr = L"Mlym";
+        static constexpr auto m_mymrStr = L"Mymr";
+        static constexpr auto m_oryaStr = L"Orya";
+        static constexpr auto m_tamlDecStr = L"TamlDec";
+        static constexpr auto m_teluStr = L"Telu";
+        static constexpr auto m_thaiStr = L"Thai";
+        static constexpr auto m_tibtStr = L"Tibt";
+        static constexpr auto m_defaultStr = L"Default";
+
+        static constexpr auto m_resultFullFontSizeStr = L"ResultFullFontSize";
+        static constexpr auto m_resultFullMinFontSizeStr = L"ResultFullMinFontSize";
+        static constexpr auto m_resultPortraitMinFontSizeStr = L"ResultPortraitMinFontSize";
+        static constexpr auto m_resultSnapFontSizeStr = L"ResultSnapFontSize";
+        static constexpr auto m_calcButtonCaptionSizeOverrideStr = L"CalcButtonCaptionSizeOverride";
+        static constexpr auto m_calcButtonScientificSnapCaptionSizeOverrideStr = L"CalcButtonScientificSnapCaptionSizeOverride";
+        static constexpr auto m_calcButtonScientificPortraitCaptionSizeOverrideStr = L"CalcButtonScientificPortraitCaptionSizeOverride";
+
+        static constexpr auto m_historyPaneStr = L"HistoryPane";
+        static constexpr auto m_memoryPaneStr = L"MemoryPane";
+
+        static constexpr auto m_windowsUIXamlControlsPrimitivesFlyoutBaseStr = L"Windows.UI.Xaml.Controls.Primitives.FlyoutBase";
+        static constexpr auto m_closingStr = L"Closing";
+
+        static constexpr auto m_programmerStr = L"Programmer";
+        static constexpr auto m_scientificStr = L"Scientific";
+        static constexpr auto m_standardStr = L"Standard";
+
+        static constexpr auto m_errorLayoutStr = L"ErrorLayout";
+        static constexpr auto m_noErrorLayoutStr = L"NoErrorLayout";
+
+        static constexpr auto m_scientificAngleButtonsStr = L"ScientificAngleButtons";
+        static constexpr auto m_programmerOperatorsStr = L"ProgrammerOperators";
+        static constexpr auto m_programmerDisplayPanelStr = L"ProgrammerDisplayPanel";
+
+        static constexpr auto m_validRegexPatternZeroStr = L"[-]{0,1}[0-9]{0,}[.]{0,1}[0-9]{0,}";
+        static constexpr auto m_validRegexPatternOneStr = L"[-]{0,1}[0-9]{0,}[.]{0,1}[0-9]{0,}[e]{1}[+]{1}[0-9]{1,}";
+        static constexpr auto m_validRegexPatternTwoStr = L"[-]{0,1}[0-9]{0,}[.]{0,1}[0-9]{0,}[e]{1}[-]{1}[0-9]{1,}";
 };
 }

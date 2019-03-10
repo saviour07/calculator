@@ -56,19 +56,19 @@ m_resultAnimate(false)
         HistoryButton->HorizontalAlignment = ::HorizontalAlignment::Left;
     }
 
-    m_displayFlyout = static_cast<MenuFlyout^>(Resources->Lookup(L"DisplayContextMenu"));
+    m_displayFlyout = static_cast<MenuFlyout^>(Resources->Lookup(ref new String(m_displayContextMenuStr)));
     auto resLoader = AppResourceProvider::GetInstance();
-    CopyMenuItem->Text = resLoader.GetResourceString(L"copyMenuItem");
-    PasteMenuItem->Text = resLoader.GetResourceString(L"pasteMenuItem");
+    CopyMenuItem->Text = resLoader.GetResourceString(ref new String(m_copyMenuItemStr));
+    PasteMenuItem->Text = resLoader.GetResourceString(ref new String(m_pasteMenuItemStr));
 }
 
 void Calculator::LoadResourceStrings()
 {
     auto resProvider = AppResourceProvider::GetInstance();
-    m_openMemoryFlyoutAutomationName = resProvider.GetResourceString(L"MemoryButton_Open");
-    m_closeMemoryFlyoutAutomationName = resProvider.GetResourceString(L"MemoryButton_Close");
-    m_openHistoryFlyoutAutomationName = resProvider.GetResourceString(L"HistoryButton_Open");
-    m_closeHistoryFlyoutAutomationName = resProvider.GetResourceString(L"HistoryButton_Close");
+    m_openMemoryFlyoutAutomationName = resProvider.GetResourceString(ref new String(m_memoryButtonOpenStr));
+    m_closeMemoryFlyoutAutomationName = resProvider.GetResourceString(ref new String(m_memoryButtonCloseStr));
+    m_openHistoryFlyoutAutomationName = resProvider.GetResourceString(ref new String(m_historyButtonOpenStr));
+    m_closeHistoryFlyoutAutomationName = resProvider.GetResourceString(ref new String(m_historyButtonCloseStr));
     AutomationProperties::SetName(MemoryButton, m_openMemoryFlyoutAutomationName);
     AutomationProperties::SetName(HistoryButton, m_openHistoryFlyoutAutomationName);
 }
@@ -89,41 +89,41 @@ void Calculator::SetFontSizeResources()
     // Since we need different font sizes for different numeric system,
     // we use a table of optimal font sizes for each numeric system.
     static const FontTable fontTables[] = {
-            { L"Arab", 104, 29.333, 23, 40, 56, 40, 56 },
-            { L"ArabExt", 104, 29.333, 23, 40, 56, 40, 56 },
-            { L"Beng", 104, 26, 17, 40, 56, 40, 56 },
-            { L"Deva", 104, 29.333, 20.5, 40, 56, 40, 56 },
-            { L"Gujr", 104, 29.333, 18.5, 40, 56, 40, 56 },
-            { L"Khmr", 104, 29.333, 19.5, 40, 56, 40, 56 },
-            { L"Knda", 104, 25, 17, 40, 56, 40, 56 },
-            { L"Laoo", 104, 28, 18, 40, 56, 40, 56 },
-            { L"Latn", 104, 29.333, 23, 40, 56, 40, 56 },
-            { L"Mlym", 80, 22, 15.5, 30, 56, 35, 48 },
-            { L"Mymr", 104, 29.333, 20, 35, 48, 36, 48 },
-            { L"Orya", 88, 26, 20, 40, 56, 40, 56 },
-            { L"TamlDec", 77, 25, 16, 28, 48, 34, 48 },
-            { L"Telu", 104, 25, 16.5, 40, 56, 40, 56 },
-            { L"Thai", 104, 28, 18, 40, 56, 40, 56 },
-            { L"Tibt", 104, 29.333, 20, 40, 56, 40, 56 },
-            { L"Default", 104, 29.333, 23, 40, 56, 40, 56 }
+            { m_arabStr, 104, 29.333, 23, 40, 56, 40, 56 },
+            { m_arabExtStr, 104, 29.333, 23, 40, 56, 40, 56 },
+            { m_bengStr, 104, 26, 17, 40, 56, 40, 56 },
+            { m_devaStr, 104, 29.333, 20.5, 40, 56, 40, 56 },
+            { m_gujrStr, 104, 29.333, 18.5, 40, 56, 40, 56 },
+            { m_khmrStr, 104, 29.333, 19.5, 40, 56, 40, 56 },
+            { m_kndaStr, 104, 25, 17, 40, 56, 40, 56 },
+            { m_laooStr, 104, 28, 18, 40, 56, 40, 56 },
+            { m_latnStr, 104, 29.333, 23, 40, 56, 40, 56 },
+            { m_mlymStr, 80, 22, 15.5, 30, 56, 35, 48 },
+            { m_mymrStr, 104, 29.333, 20, 35, 48, 36, 48 },
+            { m_oryaStr, 88, 26, 20, 40, 56, 40, 56 },
+            { m_tamlDecStr, 77, 25, 16, 28, 48, 34, 48 },
+            { m_teluStr, 104, 25, 16.5, 40, 56, 40, 56 },
+            { m_thaiStr, 104, 28, 18, 40, 56, 40, 56 },
+            { m_tibtStr, 104, 29.333, 20, 40, 56, 40, 56 },
+            { m_defaultStr, 104, 29.333, 23, 40, 56, 40, 56 }
     };
 
     DecimalFormatter^ formatter = LocalizationService::GetRegionalSettingsAwareDecimalFormatter();
 
     const FontTable* currentItem = fontTables;
-    while (currentItem->numericSystem.compare(std::wstring(L"Default")) != 0 &&
+    while (currentItem->numericSystem.compare(m_defaultStr) != 0 &&
         currentItem->numericSystem.compare(formatter->NumeralSystem->Data()) != 0)
     {
         currentItem++;
     }
 
-    this->Resources->Insert(StringReference(L"ResultFullFontSize"), currentItem->fullFont);
-    this->Resources->Insert(StringReference(L"ResultFullMinFontSize"), currentItem->fullFontMin);
-    this->Resources->Insert(StringReference(L"ResultPortraitMinFontSize"), currentItem->portraitMin);
-    this->Resources->Insert(StringReference(L"ResultSnapFontSize"), currentItem->snapFont);
-    this->Resources->Insert(StringReference(L"CalcButtonCaptionSizeOverride"), currentItem->fullNumPadFont);
-    this->Resources->Insert(StringReference(L"CalcButtonScientificSnapCaptionSizeOverride"), currentItem->snapScientificNumPadFont);
-    this->Resources->Insert(StringReference(L"CalcButtonScientificPortraitCaptionSizeOverride"), currentItem->portraitScientificNumPadFont);
+    this->Resources->Insert(StringReference(m_resultFullFontSizeStr), currentItem->fullFont);
+    this->Resources->Insert(StringReference(m_resultFullMinFontSizeStr), currentItem->fullFontMin);
+    this->Resources->Insert(StringReference(m_resultPortraitMinFontSizeStr), currentItem->portraitMin);
+    this->Resources->Insert(StringReference(m_resultSnapFontSizeStr), currentItem->snapFont);
+    this->Resources->Insert(StringReference(m_calcButtonCaptionSizeOverrideStr), currentItem->fullNumPadFont);
+    this->Resources->Insert(StringReference(m_calcButtonScientificSnapCaptionSizeOverrideStr), currentItem->snapScientificNumPadFont);
+    this->Resources->Insert(StringReference(m_calcButtonScientificPortraitCaptionSizeOverrideStr), currentItem->portraitScientificNumPadFont);
 }
 
 void Calculator::OnLoaded(_In_ Object^, _In_ RoutedEventArgs^)
@@ -132,12 +132,12 @@ void Calculator::OnLoaded(_In_ Object^, _In_ RoutedEventArgs^)
     Model->HideMemoryClicked += ref new HideMemoryClickedHandler(this, &Calculator::OnHideMemoryClicked);
 
     InitializeHistoryView(Model->HistoryVM);
-    String^ historyPaneName = AppResourceProvider::GetInstance().GetResourceString(L"HistoryPane");
+    String^ historyPaneName = AppResourceProvider::GetInstance().GetResourceString(ref new String(m_historyPaneStr));
     HistoryFlyout->FlyoutPresenterStyle->Setters->Append(ref new Setter(AutomationProperties::NameProperty, historyPaneName));
-    String^ memoryPaneName = AppResourceProvider::GetInstance().GetResourceString(L"MemoryPane");
+    String^ memoryPaneName = AppResourceProvider::GetInstance().GetResourceString(ref new String(m_memoryPaneStr));
     MemoryFlyout->FlyoutPresenterStyle->Setters->Append(ref new Setter(AutomationProperties::NameProperty, memoryPaneName));
 
-    if (Windows::Foundation::Metadata::ApiInformation::IsEventPresent(L"Windows.UI.Xaml.Controls.Primitives.FlyoutBase", L"Closing"))
+    if (Windows::Foundation::Metadata::ApiInformation::IsEventPresent(ref new String(m_windowsUIXamlControlsPrimitivesFlyoutBaseStr), ref new String(m_closingStr)))
     {
         HistoryFlyout->Closing += ref new TypedEventHandler<FlyoutBase^, FlyoutBaseClosingEventArgs^>(this, &Calculator::HistoryFlyout_Closing);
         MemoryFlyout->Closing += ref new TypedEventHandler<FlyoutBase^, FlyoutBaseClosingEventArgs^>(this, &Calculator::OnMemoryFlyoutClosing);
@@ -160,42 +160,22 @@ void Calculator::OnLoaded(_In_ Object^, _In_ RoutedEventArgs^)
 
 std::wstring Calculator::GetCurrentLayoutState()
 {
-    std::wstring state;
-
     if (IsProgrammer)
     {
-        state = L"Programmer";
+        return m_programmerStr;
     }
     else if (IsScientific)
     {
-        state = L"Scientific";
-    }
-    else
-    {
-        state = L"Standard";
+        return m_scientificStr;
     }
 
-    return state;
+    return m_standardStr;
 }
 
 void Calculator::UpdateViewState()
 {
-    std::wstring state;
-    if (IsProgrammer)
-    {
-        state = L"Programmer";
-        Model->IsDecimalEnabled = false;
-    }
-    else if (IsScientific)
-    {
-        state = L"Scientific";
-        Model->IsDecimalEnabled = true;
-    }
-    else
-    {
-        state = L"Standard";
-        Model->IsDecimalEnabled = true;
-    }
+    const auto state = GetCurrentLayoutState();
+    Model->IsDecimalEnabled = IsProgrammer ? false : true;
 
     CloseHistoryFlyout();
     CloseMemoryFlyout();
@@ -319,7 +299,7 @@ void Calculator::OnIsInErrorPropertyChanged()
 {
     bool isError = Model->IsInError;
 
-    String^ newState = isError ? L"ErrorLayout" : L"NoErrorLayout";
+    String^ newState = isError ? ref new String(m_errorLayoutStr) : ref new String(m_noErrorLayoutStr);
     VisualStateManager::GoToState(this, newState, false);
 
     if (m_memory != nullptr)
@@ -366,7 +346,7 @@ void Calculator::EnsureScientific()
 
     if (!ScientificAngleButtons)
     {
-        this->FindName(L"ScientificAngleButtons");
+        this->FindName(ref new String(m_scientificAngleButtonsStr));
     }
 }
 
@@ -374,12 +354,12 @@ void Calculator::EnsureProgrammer()
 {
     if (!ProgrammerOperators)
     {
-        this->FindName(L"ProgrammerOperators");
+        this->FindName(ref new String(m_programmerOperatorsStr));
     }
 
     if (!ProgrammerDisplayPanel)
     {
-        this->FindName(L"ProgrammerDisplayPanel");
+        this->FindName(ref new String(m_programmerDisplayPanelStr));
     }
 
     OpsPanel->EnsureProgrammerRadixOps();
@@ -694,9 +674,9 @@ bool Calculator::IsValidRegularExpression(std::wstring str)
 {
     bool result = false;
     std::wregex regexPatterns[3];
-    regexPatterns[0] = L"[-]{0,1}[0-9]{0,}[.]{0,1}[0-9]{0,}";
-    regexPatterns[1] = L"[-]{0,1}[0-9]{0,}[.]{0,1}[0-9]{0,}[e]{1}[+]{1}[0-9]{1,}";
-    regexPatterns[2] = L"[-]{0,1}[0-9]{0,}[.]{0,1}[0-9]{0,}[e]{1}[-]{1}[0-9]{1,}";
+    regexPatterns[0] = m_validRegexPatternZeroStr;
+    regexPatterns[1] = m_validRegexPatternOneStr;
+    regexPatterns[2] = m_validRegexPatternTwoStr;
 
     const auto& localizer = LocalizationSettings::GetInstance();
     String^ englishString = localizer.GetEnglishValueFromLocalizedDigits(str);
