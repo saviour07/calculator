@@ -17,6 +17,11 @@ namespace CalculatorApp
             virtual Platform::Object^ Convert(_In_ Platform::Object^ value, Windows::UI::Xaml::Interop::TypeName targetType, _In_ Platform::Object^ parameter, _In_ Platform::String^ language);
             virtual Platform::Object^ ConvertBack(_In_ Platform::Object^ value, Windows::UI::Xaml::Interop::TypeName targetType, _In_ Platform::Object^ parameter, _In_ Platform::String^ language);
 
+        private:
+            static constexpr auto m_bitAutomationName = L"BitAutomationName";
+            static constexpr auto m_valueAutomationName = L"ValueAutomationName";
+            static constexpr auto m_binaryZeroValueAutomationName = L"BinaryZeroValueAutomationName";
+            static constexpr auto m_binaryOneValueAutomationName = L"BinaryOneValueAutomationName";
         };
     }
 }

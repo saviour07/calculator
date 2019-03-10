@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 #include "pch.h"
@@ -27,10 +27,10 @@ Object^ BitFlipAutomationNameConverter::Convert(_In_ Object^ value, TypeName tar
     wchar_t ch1 = localizationSettings.GetDigitSymbolFromEnUsDigit('1');
 
     String^ indexName = resourceLoader.GetResourceString(static_cast<String^>(parameter));
-    String^ bitName = resourceLoader.GetResourceString(L"BitAutomationName");
-    String^ valueName = resourceLoader.GetResourceString(L"ValueAutomationName");
-    String^ zero = resourceLoader.GetResourceString(L"BinaryZeroValueAutomationName");
-    String^ one = resourceLoader.GetResourceString(L"BinaryOneValueAutomationName");
+    String^ bitName = resourceLoader.GetResourceString(ref new String(m_bitAutomationName));
+    String^ valueName = resourceLoader.GetResourceString(ref new String(m_valueAutomationName));
+    String^ zero = resourceLoader.GetResourceString(ref new String(m_binaryZeroValueAutomationName));
+    String^ one = resourceLoader.GetResourceString(ref new String(m_binaryOneValueAutomationName));
     if ((value != nullptr) && (parameter != nullptr))
     {
         wstring binaryDisplay = (static_cast<String^>(value))->Data();
