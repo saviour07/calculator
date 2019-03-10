@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 #include "pch.h"
@@ -90,7 +90,7 @@ void CalculatorProgrammerDisplayPanel::IsErrorVisualState::set(bool value)
     if (m_isErrorVisualState != value)
     {
         m_isErrorVisualState = value;
-        String^ newState = m_isErrorVisualState ? L"ErrorLayout" : L"NoErrorLayout";
+        String^ newState = m_isErrorVisualState ? ref new String(m_errorLayoutStr) : ref new String(m_noErrorLayoutStr);
         VisualStateManager::GoToState(this, newState, false);
     }
 }
