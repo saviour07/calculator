@@ -34,5 +34,8 @@ namespace CalculatorApp
         void BinButtonChecked(_In_ Platform::Object^ sender, _In_ Windows::UI::Xaml::RoutedEventArgs^ e);
         void OctButtonChecked(_In_ Platform::Object^ sender, _In_ Windows::UI::Xaml::RoutedEventArgs^ e);
         void OnCopyMenuItemClicked(_In_ Platform::Object^ sender, _In_ Windows::UI::Xaml::RoutedEventArgs^ e);
+
+    private:
+        static constexpr auto m_copyMenuItemStr = L"copyMenuItem";
     };
 }

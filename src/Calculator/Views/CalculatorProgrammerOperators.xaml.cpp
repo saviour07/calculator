@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 #include "pch.h"
@@ -33,7 +33,7 @@ CalculatorProgrammerOperators::CalculatorProgrammerOperators()
 {
     InitializeComponent();
 
-    CopyMenuItem->Text = AppResourceProvider::GetInstance().GetResourceString(L"copyMenuItem");
+    CopyMenuItem->Text = AppResourceProvider::GetInstance().GetResourceString(ref new String(m_copyMenuItemStr));
 }
 
 void CalculatorProgrammerOperators::HexButtonChecked(_In_ Object^ sender, _In_ RoutedEventArgs^ e)
