@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 #pragma once
@@ -53,6 +53,10 @@ namespace CalculatorApp
             Windows::Foundation::EventRegistrationToken m_scrollRightClickEventToken;
             Windows::Foundation::EventRegistrationToken m_pointerEnteredEventToken;
             Windows::Foundation::EventRegistrationToken m_pointerExitedEventToken;
+
+        private:
+            static constexpr auto m_normalStr = L"Normal";
+            static constexpr auto m_activeStr = L"Active";
         };
     }
 }

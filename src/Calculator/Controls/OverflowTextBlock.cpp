@@ -1,4 +1,4 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
+﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
 #include "pch.h"
@@ -83,11 +83,11 @@ void OverflowTextBlock::UpdateVisualState()
 {
     if (IsActive)
     {
-        VisualStateManager::GoToState(this, "Active", true);
+        VisualStateManager::GoToState(this, ref new String(m_activeStr), true);
     }
     else
     {
-        VisualStateManager::GoToState(this, "Normal", true);
+        VisualStateManager::GoToState(this, ref new String(m_normalStr), true);
     }
 }
 
