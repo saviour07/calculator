@@ -36,5 +36,12 @@ namespace CalculatorApp
         void ProgModeRadixChange();
 
         bool m_isErrorVisualState;
+
+    private:
+        static constexpr auto m_isBinaryBitFlippingEnabledStr = L"IsBinaryBitFlippingEnabled";
+        static constexpr auto m_rolButtonStr = L"rolButton";
+        static constexpr auto m_rorButtonStr = L"rorButton";
+        static constexpr auto m_errorLayoutStr = L"ErrorLayout";
+        static constexpr auto m_noErrorLayoutStr = L"NoErrorLayout";
     };
 }

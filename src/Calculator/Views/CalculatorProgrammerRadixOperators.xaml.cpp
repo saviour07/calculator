@@ -29,7 +29,7 @@ CalculatorProgrammerRadixOperators::CalculatorProgrammerRadixOperators() :
     InitializeComponent();
 
     auto booleanToVisibilityNegationConverter = ref new Converters::BooleanToVisibilityNegationConverter;
-    SetVisibilityBinding(ProgRadixOps, L"IsBinaryBitFlippingEnabled", booleanToVisibilityNegationConverter);
+    SetVisibilityBinding(ProgRadixOps, ref new String(m_isBinaryBitFlippingEnabledStr), booleanToVisibilityNegationConverter);
 }
 
 void CalculatorProgrammerRadixOperators::OnLoaded(Object^, RoutedEventArgs^)
@@ -46,8 +46,8 @@ void CalculatorProgrammerRadixOperators::Shift_Clicked(Platform::Object^ sender,
 
     if (rolButton == nullptr)
     {
-        FindName("rolButton");
-        FindName("rorButton");
+        FindName(ref new String(m_rolButtonStr));
+        FindName(ref new String(m_rorButtonStr));
     }
 
     if (isShiftChecked)
@@ -89,7 +89,7 @@ void CalculatorProgrammerRadixOperators::IsErrorVisualState::set(bool value)
     if (m_isErrorVisualState != value)
     {
         m_isErrorVisualState = value;
-        String^ newState = m_isErrorVisualState ? L"ErrorLayout" : L"NoErrorLayout";
+        String^ newState = m_isErrorVisualState ? ref new String(m_errorLayoutStr) : ref new String(m_noErrorLayoutStr);
         VisualStateManager::GoToState(this, newState, false);
         NumberPad->IsErrorVisualState = m_isErrorVisualState;
     }
